@@ -20,17 +20,17 @@
 
 | 场景               | 推荐命令                         | 作用                                           |
 | ------------------ | -------------------------------- | ---------------------------------------------- |
-| 新需求 / 重构规划  | `/byd-next-workflow:byd:dev-plan <需求>`           | 梳理范围、影响面、方案和验证策略，不直接改代码 |
-| 已确认方案后实现   | `/byd-next-workflow:byd:dev-implement <路径/需求>` | 仅实现 Next.js + React + TSX 相关改动          |
-| 本地改动审查       | `/byd-next-workflow:byd:dev-review [文件或范围]`   | 按 React/TSX/i18n/theme/类型/性能维度审查      |
-| 构建或类型报错修复 | `/byd-next-workflow:byd:dev-fix-build <错误输出>`  | 最小改动修复 Next/TS/React 构建问题            |
-| 修复bug            | `/byd-next-workflow:byd:dev-fix-bug <范围>`        | 按指定代码行或目录范围定位并修复 BYDFi Next.js / React / TSX bug |
+| 新需求 / 重构规划  | `/byd-next:dev-plan <需求>`           | 梳理范围、影响面、方案和验证策略，不直接改代码 |
+| 已确认方案后实现   | `/byd-next:dev-implement <路径/需求>` | 仅实现 Next.js + React + TSX 相关改动          |
+| 本地改动审查       | `/byd-next:dev-review [文件或范围]`   | 按 React/TSX/i18n/theme/类型/性能维度审查      |
+| 构建或类型报错修复 | `/byd-next:dev-fix-build <错误输出>`  | 最小改动修复 Next/TS/React 构建问题            |
+| 修复bug            | `/byd-next:dev-fix-bug <范围>`        | 按指定代码行或目录范围定位并修复 BYDFi Next.js / React / TSX bug |
 
 专项入口继续使用：
 
-- 代码生成：`/byd-next-workflow:byd:dev-implement`、`/byd-next-workflow:byd:dev-refactor-component`、`/byd-next-workflow:byd:codegen-design-system`、`/byd-next-workflow:byd:codegen-figma-ui`、`/byd-next-workflow:byd:codegen-designer-landing-ui`、`/byd-next-workflow:byd:codegen-designer-premium-ui`
-- 审计：`/byd-next-workflow:byd:audit-i18n`、`/byd-next-workflow:byd:audit-theme`、`/byd-next-workflow:byd:audit-security`、`/byd-next-workflow:byd:audit-dead-code` 等
-- Git/PR：`/byd-next-workflow:byd:workflow-git-commit`、`/byd-next-workflow:byd:workflow-create-pr`（必须用户明确授权）
+- 代码生成：`/byd-next:dev-implement`、`/byd-next:dev-refactor-component`、`/byd-next:codegen-design-system`、`/byd-next:codegen-figma-ui`、`/byd-next:codegen-designer-landing-ui`、`/byd-next:codegen-designer-premium-ui`
+- 审计：`/byd-next:audit-i18n`、`/byd-next:audit-theme`、`/byd-next:audit-security`、`/byd-next:audit-dead-code` 等
+- Git/PR：`/byd-next:workflow-git-commit`、`/byd-next:workflow-create-pr`（必须用户明确授权）
 
 更多说明见 `AI_WORKFLOW.md` 与 `commands/byd/dev-doc.md`。
 
@@ -38,7 +38,7 @@
 
 | 目录 | 定位 | 使用方式 |
 | --- | --- | --- |
-| `commands/` | Slash command 入口 | 用户触发 `/byd-next-workflow:byd:*` 或专项命令时优先读取 |
+| `commands/` | Slash command 入口 | 用户触发 `/byd-next:*` 或专项命令时优先读取 |
 | `skills/` | 可复用执行流程 | 按任务类型加载规划、实现、审查、验证、审计流程 |
 | `rules/` | 硬性规则 | 按改动范围读取并遵守，不被 skills / knowledge 覆盖 |
 | `knowledge/` | 项目知识库体系 | 开发前查找 API、hooks、store、utils、i18n 等公共能力，避免重复实现 |

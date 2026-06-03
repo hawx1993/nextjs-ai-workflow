@@ -6,9 +6,9 @@
 
 | Skill                    | 入口命令                                                    | 用途                 |
 | ------------------------ | ----------------------------------------------------------- | -------------------- |
-| `dev/nextjs-dev`    | `/byd:dev-plan`、`/byd:dev-implement`、`/byd:dev-fix-build` | 规划、实现、构建修复 |
-| `dev/nextjs-review` | `/byd:dev-review`                                           | React/TSX 审查       |
-| `workflow/nextjs-verify` | `/byd:dev-verify`                                           | 验证与交付结论       |
+| `dev/nextjs-dev`    | `/byd-next:dev-plan`、`/byd-next:dev-implement`、`/byd-next:dev-fix-build` | 规划、实现、构建修复 |
+| `dev/nextjs-review` | `/byd-next:dev-review`                                           | React/TSX 审查       |
+| `workflow/nextjs-verify` | `/byd-next:dev-verify`                                           | 验证与交付结论       |
 
 ## 专项审计
 
@@ -40,8 +40,8 @@
 
 | 目录 | 入口命令 | 用途 |
 | --- | --- | --- |
-| `workflow/pr-reviewer` | `/byd:workflow-pr-reviewer` | GitHub PR 自动审查、发布行内评论和汇总评论 |
-| `workflow/pre-release` | `/byd:workflow-pre-release` | 发版前代码质量检查并生成风险报告 |
+| `workflow/pr-reviewer` | `/byd-next:workflow-pr-reviewer` | GitHub PR 自动审查、发布行内评论和汇总评论 |
+| `workflow/pre-release` | `/byd-next:workflow-pre-release` | 发版前代码质量检查并生成风险报告 |
 
 ## 编写和维护规范
 

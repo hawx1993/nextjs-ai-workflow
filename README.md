@@ -1,6 +1,6 @@
 # BYD Next Workflow
 
-`byd-next-workflow` 是一个 Claude Code plugin，用于在 BYDFi 风格的 Next.js / React / TSX / TypeScript monorepo 中提供可复用的 AI 开发工作流。
+`byd-next` 是一个 Claude Code plugin，用于在 BYDFi 风格的 Next.js / React / TSX / TypeScript monorepo 中提供可复用的 AI 开发工作流。
 
 它将本仓库的 commands、agents、skills、rules、knowledge 和 hooks 打包为 Claude Code plugin，安装后通过 plugin namespace 调用。
 
@@ -15,7 +15,7 @@
 
 ## 安装
 
-本仓库同时作为 marketplace 仓库和插件仓库使用，根目录的 `.claude-plugin/marketplace.json` 会将 `byd-next-workflow` 指向当前仓库根目录。
+本仓库同时作为 marketplace 仓库和插件仓库使用，根目录的 `.claude-plugin/marketplace.json` 会将 `byd-next` 指向当前仓库根目录。
 
 添加 marketplace：
 
@@ -26,13 +26,13 @@
 安装插件：
 
 ```text
-/plugin install byd-next-workflow@byd-next-workflow-marketplace
+/plugin install byd-next@byd-next-marketplace
 ```
 
 如果已经添加过旧版本 marketplace，先更新：
 
 ```text
-/plugin marketplace update byd-next-workflow-marketplace
+/plugin marketplace update byd-next-marketplace
 ```
 
 ## 本地测试
@@ -47,7 +47,7 @@ claude --plugin-dir .
 
 ```text
 /reload-plugins
-/byd-next-workflow:byd:dev-plan 测试：规划一个简单页面改动，不要修改文件
+/byd-next:dev-plan 测试：规划一个简单页面改动，不要修改文件
 ```
 
 ## 常用命令
@@ -55,13 +55,13 @@ claude --plugin-dir .
 安装为 plugin 后，命令会带上 plugin namespace。常用入口示例：
 
 ```text
-/byd-next-workflow:byd:dev-plan <需求>
-/byd-next-workflow:byd:dev-implement <路径/需求>
-/byd-next-workflow:byd:dev-review [文件或范围]
-/byd-next-workflow:byd:dev-fix-build <错误输出>
-/byd-next-workflow:byd:dev-fix-bug <范围>
-/byd-next-workflow:byd:workflow-git-commit
-/byd-next-workflow:byd:workflow-create-pr <base-branch>
+/byd-next:dev-plan <需求>
+/byd-next:dev-implement <路径/需求>
+/byd-next:dev-review [文件或范围]
+/byd-next:dev-fix-build <错误输出>
+/byd-next:dev-fix-bug <范围>
+/byd-next:workflow-git-commit
+/byd-next:workflow-create-pr <base-branch>
 ```
 
 > 注意：插件命令名称以 Claude Code 实际发现结果为准；如嵌套目录展示方式变化，请以 `/help` 或 `/plugin` 中显示为准。
@@ -105,5 +105,5 @@ claude plugin validate . --strict
 
 1. `claude --plugin-dir .`
 2. `/reload-plugins`
-3. 执行一个只读规划命令，例如 `/byd-next-workflow:byd:dev-plan ...`
+3. 执行一个只读规划命令，例如 `/byd-next:dev-plan ...`
 4. 在一次性测试项目中确认危险命令 / 新增依赖 hook 能阻断，TSX 质量 hook 能提醒。

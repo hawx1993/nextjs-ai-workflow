@@ -10,13 +10,13 @@ author: Nilu
 用法：
 
 ```bash
-/byd:codegen-figma-ui [figma-url] [file-path]
+/byd-next:codegen-figma-ui [figma-url] [file-path]
 ```
 
 示例：
 
 ```bash
-/byd:codegen-figma-ui "https://www.figma.com/design/xxx/Design?node-id=1-2" apps/byd-ssg/src/components/example-card/index.tsx
+/byd-next:codegen-figma-ui "https://www.figma.com/design/xxx/Design?node-id=1-2" apps/byd-ssg/src/components/example-card/index.tsx
 ```
 
 ## 参数

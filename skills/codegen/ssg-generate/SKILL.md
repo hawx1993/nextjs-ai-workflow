@@ -13,7 +13,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, Agent
 通过 `$ARGUMENTS` 可指定目标生成目录或需求说明，例如：
 
 ```bash
-/byd:codegen-ssg apps/byd-ssg/src/pages/xxx 新增某功能
+/byd-next:codegen-ssg apps/byd-ssg/src/pages/xxx 新增某功能
 ```
 
 ## 执行前必须读取的 rules

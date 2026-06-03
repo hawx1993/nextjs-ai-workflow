@@ -18,7 +18,7 @@ author: Nilu
 示例：
 
 ```bash
-/byd:workflow-weekly-report nilu
+/byd-next:workflow-weekly-report nilu
 ```
 
 ## 输出要求
@@ -104,7 +104,7 @@ const args = rawArgs.trim().split(/\s+/).filter(Boolean);
 const reporter = args[0];
 
 if (!reporter) {
-  console.error('请传入周报署名，例如：/byd:workflow-weekly-report nilu');
+  console.error('请传入周报署名，例如：/byd-next:workflow-weekly-report nilu');
   process.exit(1);
 }
 

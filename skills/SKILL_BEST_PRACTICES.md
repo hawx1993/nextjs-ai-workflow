@@ -170,9 +170,9 @@ my-skill/
 
 | 问题域                     | SoT skill             | 推荐命令                                                    |
 | -------------------------- | --------------------- | ----------------------------------------------------------- |
-| 需求规划 / 实现 / 构建修复 | `bydfi-nextjs-dev`    | `/byd:dev-plan`、`/byd:dev-implement`、`/byd:dev-fix-build` |
-| React/TSX 代码审查         | `bydfi-nextjs-review` | `/byd:dev-review`                                           |
-| 交付前验证                 | `bydfi-nextjs-verify` | `/byd:dev-verify`                                           |
+| 需求规划 / 实现 / 构建修复 | `bydfi-nextjs-dev`    | `/byd-next:dev-plan`、`/byd-next:dev-implement`、`/byd-next:dev-fix-build` |
+| React/TSX 代码审查         | `bydfi-nextjs-review` | `/byd-next:dev-review`                                           |
+| 交付前验证                 | `bydfi-nextjs-verify` | `/byd-next:dev-verify`                                           |
 
 这些 skill 只覆盖 Next.js + React + TSX 开发，不替代既有审计类 skill。专项质量检查仍使用 `audit/*`。
 

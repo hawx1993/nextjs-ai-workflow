@@ -14,10 +14,10 @@ author: nilu
 
 ### 1. 明确范围
 
-当从 `/byd:dev-implement` 进入实现流程时，必须接收并解析两个参数：
+当从 `/byd-next:dev-implement` 进入实现流程时，必须接收并解析两个参数：
 
 ```bash
-/byd:dev-implement <文件路径> | <需求说明>
+/byd-next:dev-implement <文件路径> | <需求说明>
 ```
 
 - `<文件路径>`：要生成或修改代码的目标文件路径，作为实现落点和影响范围判断依据。

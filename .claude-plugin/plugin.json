@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "byd-next-workflow",
-  "displayName": "BYD Next Workflow",
+  "name": "byd-next",
+  "displayName": "BYD Next",
   "version": "1.0.0",
   "description": "BYDFi-oriented Claude Code workflow for Next.js, React, TSX, TypeScript, reviews, audits, build fixes, and PR workflows.",
   "author": {

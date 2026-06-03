@@ -1,7 +1,7 @@
 ---
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 argument-hint: <文件路径> | <需求说明>
-description: 先执行 /byd-next-workflow:byd:dev-plan 规划，再按已确认方案实现ssg页面或ssr页面的nextjs代码
+description: 先执行 /byd-next:dev-plan 规划，再按已确认方案实现ssg页面或ssr页面的nextjs代码
 ---
 
 # BYDFi Next.js 代码实现

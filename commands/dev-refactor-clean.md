@@ -14,9 +14,9 @@ author: Nilu
 必须传入一个明确的文件或目录路径作为清理范围：
 
 ```bash
-/byd:dev-refactor-clean apps/byd-ssr/src/pages/[locale]/crypto-tools
-/byd:dev-refactor-clean packages/apps-kit/core/i18n/src
-/byd:dev-refactor-clean .claude/commands/byd
+/byd-next:dev-refactor-clean apps/byd-ssr/src/pages/[locale]/crypto-tools
+/byd-next:dev-refactor-clean packages/apps-kit/core/i18n/src
+/byd-next:dev-refactor-clean .claude/commands/byd
 ```
 
 如果 `$ARGUMENTS` 为空，必须先停止并要求用户补充路径；不要默认扫描整个仓库。
