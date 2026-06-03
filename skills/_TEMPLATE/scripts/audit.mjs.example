@@ -1,0 +1,136 @@
+#!/usr/bin/env node
+/**
+ * <SKILL-NAME> 审计脚本.
+ *
+ * 判定规则与已知陷阱见同目录 SKILL.md.
+ * 输出: stdout (调用方重定向到 reports/YYYY-MM-DD/<FILENAME>.md).
+ *
+ * 设计原则:
+ * - Deterministic: 同 git state 下两次执行输出完全一致.
+ * - 文件级 distinct 计数: 一个文件多次命中算 1 次.
+ */
+
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { join } from 'node:path';
+
+const REPO = execFileSync('git', ['rev-parse', '--show-toplevel'], {
+  cwd: import.meta.dirname,
+  encoding: 'utf8',
+}).trim();
+
+const SCAN_ROOTS = {
+  // 替换为实际扫描根
+  ssg: `${REPO}/apps/bydfi-ssg`,
+  ssr: `${REPO}/apps/bydfi-ssr`,
+};
+
+const SKIP_DIRS = new Set([
+  'node_modules', '.next', 'out', 'out-rtl', 'dist', 'build',
+  '.git', '.turbo', 'scripts', 'plugin',
+]);
+const SKIP_FILE_PATTERNS = [
+  /^next\.config\.(js|mjs|ts)$/,
+  /^postcss\.config\.(js|mjs|ts)$/,
+  /^server\.js$/,
+];
+const EXTS = ['.ts', '.tsx', '.mjs', '.js', '.jsx'];
+
+// ---- 工具函数 ----
+
+function* walkFiles(root) {
+  const stack = [root];
+  while (stack.length) {
+    const cur = stack.pop();
+    let entries;
+    try {
+      entries = readdirSync(cur, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const e of entries) {
+      const full = join(cur, e.name);
+      if (e.isDirectory()) {
+        if (SKIP_DIRS.has(e.name)) continue;
+        stack.push(full);
+      } else if (e.isFile()) {
+        if (!EXTS.some((x) => e.name.endsWith(x))) continue;
+        if (SKIP_FILE_PATTERNS.some((p) => p.test(e.name))) continue;
+        yield full;
+      }
+    }
+  }
+}
+
+function gitMeta() {
+  const run = (...args) => {
+    try {
+      return execFileSync('git', ['-C', REPO, ...args], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim();
+    } catch {
+      return '';
+    }
+  };
+  return {
+    branch: run('branch', '--show-current') || '?',
+    short: run('rev-parse', '--short=10', 'HEAD') || '?',
+    worktree: !run('status', '--porcelain') ? 'clean' : 'dirty',
+    lastMsg: run('log', '-1', '--pretty=%s'),
+  };
+}
+
+function todayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+// ---- 主统计 ----
+
+function collectData() {
+  // 替换为实际统计逻辑
+  const data = new Map();
+  for (const [label, root] of Object.entries(SCAN_ROOTS)) {
+    for (const fp of walkFiles(root)) {
+      // ... 解析 fp 内容, 累积到 data
+    }
+  }
+  return data;
+}
+
+// ---- Cross-check ----
+
+function emitSanityCheck(out, data) {
+  out.push('## 准确性核验');
+  out.push('');
+  out.push('| 锚点 | 主统计 | grep 验证 | 一致 |');
+  out.push('|------|------:|---------:|:----:|');
+  // 替换为实际锚点
+  // const main = ...; const ver = ...;
+  // out.push(`| <锚点描述> | ${main} | ${ver} | ${main === ver ? '✓' : '**✗ 不一致**'} |`);
+  out.push('');
+}
+
+// ---- 主流程 ----
+
+function main() {
+  const data = collectData();
+  const meta = gitMeta();
+  const out = [];
+
+  out.push('# <REPORT-TITLE>');
+  out.push('');
+  out.push(`- 统计日期: ${todayIso()}`);
+  out.push(`- 分支: \`${meta.branch}\``);
+  out.push(`- Commit: \`${meta.short}\` — ${meta.lastMsg}`);
+  out.push(`- 工作树: ${meta.worktree}`);
+  out.push('');
+
+  // 关键发现 / 主表 / 汇总 / cross-check
+  emitSanityCheck(out, data);
+
+  process.stdout.write(out.join('\n') + '\n');
+}
+
+main();

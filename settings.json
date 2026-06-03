@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(pnpm tsc:all)",
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(gh:*)",
+      "Bash(pm2:*)",
+      "Bash(rg:*)"
+    ],
+    "deny": ["Bash(rm -rf *)", "Bash(sudo *)", "Bash(npm install *)", "Bash(pnpm add *)", "Bash(yarn add *)"]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/dangerous-command-guard.mjs"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/dependency-guard.mjs"
+          }
+        ],
+        "description": "阻断危险命令和未经确认的新增依赖"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/tsx-quality-guard.mjs"
+          }
+        ],
+        "description": "提醒 TS/TSX 硬编码文案、硬编码颜色、console.log 和 LANG 可疑用法"
+      }
+    ]
+  }
+}

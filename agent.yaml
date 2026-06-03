@@ -1,0 +1,76 @@
+spec_version: '0.1.0'
+name: bydfi-web-ai-workflow
+version: '1.0.0'
+description: 'BYDFi Web 面向 Next.js + React + TSX 的项目级 AI workflow surface。'
+language: zh-CN
+scope:
+  primary:
+    - nextjs
+    - react
+    - tsx
+    - typescript
+    - pnpm-monorepo
+  excluded_by_default:
+    - non-frontend-backend-architecture
+    - dependency-introduction-without-approval
+    - automatic-git-push-or-pr
+agents:
+  daily:
+    - nextjs-architect
+    - react-tsx-implementer
+    - react-tsx-reviewer
+    - nextjs-build-resolver
+    - frontend-quality-validator
+commands:
+  daily:
+    - bydfi:dev-plan
+    - bydfi:dev-implement
+    - bydfi:dev-review
+    - bydfi:dev-fix-build
+    - bydfi:dev-verify
+  library:
+    - bydfi:codegen-ssg
+    - bydfi:codegen-ssr
+    - bydfi:codegen-design-system
+    - bydfi:codegen-figma-ui
+    - bydfi:audit-i18n
+    - bydfi:audit-theme
+    - bydfi:audit-security
+    - bydfi:audit-dead-code
+    - bydfi:audit-dead-deps
+    - bydfi:workflow-pre-release
+    - bydfi:workflow-impact-assessment
+    - bydfi:workflow-git-commit
+    - bydfi:workflow-git-pull-request
+skills:
+  daily:
+    - bydfi-nextjs-dev
+    - bydfi-nextjs-review
+    - bydfi-nextjs-verify
+  library:
+    - audit/*
+    - codegen/*
+    - workflow/*
+rules:
+  - nextjs
+  - react-tsx
+  - typescript
+  - monorepo
+  - language
+  - theme
+  - verification
+  - branch
+hooks:
+  recommended:
+    - dangerous-command-guard
+    - dependency-guard
+    - tsx-quality-guard
+  status: 'hook 脚本已提供；settings.json 接入需用户允许修改 Claude Code 行为配置后启用。'
+validation:
+  config:
+    - node --check .claude/hooks/tsx-quality-guard.mjs
+    - node --check .claude/hooks/dependency-guard.mjs
+    - node --check .claude/hooks/dangerous-command-guard.mjs
+  project:
+    - pnpm tsc:all
+    - pnpm lint:all

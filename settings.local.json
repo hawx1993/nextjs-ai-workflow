@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__codegraph__codegraph_context",
+      "mcp__codegraph__codegraph_files",
+      "mcp__codegraph__codegraph_explore",
+      "Skill(byd:dev-review)",
+      "Bash(rtk git *)",
+      "Skill(byd:workflow-create-pr)",
+      "Skill(byd:workflow-review-pr)",
+      "Bash(python3 *)",
+      "mcp__codegraph__codegraph_node",
+      "Bash(perl -ne 'print if $.<=120')",
+      "Skill(byd:workflow-weekly-report)"
+    ]
+  }
+}
