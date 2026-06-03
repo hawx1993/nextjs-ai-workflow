@@ -13,6 +13,28 @@
 - `knowledge/`：core/API/hooks/icons 等公共能力发现流程。
 - `hooks/`：危险命令阻断、新增依赖阻断、TSX 质量提醒。
 
+## 安装
+
+本仓库同时作为 marketplace 仓库和插件仓库使用，根目录的 `.claude-plugin/marketplace.json` 会将 `byd-next-workflow` 指向当前仓库根目录。
+
+添加 marketplace：
+
+```text
+/plugin marketplace add https://github.com/hawx1993/nextjs-ai-workflow
+```
+
+安装插件：
+
+```text
+/plugin install byd-next-workflow@byd-next-workflow-marketplace
+```
+
+如果已经添加过旧版本 marketplace，先更新：
+
+```text
+/plugin marketplace update byd-next-workflow-marketplace
+```
+
 ## 本地测试
 
 在本仓库根目录执行：

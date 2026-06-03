@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-marketplace.json",
+  "name": "byd-next-workflow-marketplace",
+  "description": "Marketplace for the BYD Next Workflow Claude Code plugin.",
+  "owner": {
+    "name": "hawx1993"
+  },
+  "plugins": [
+    {
+      "name": "byd-next-workflow",
+      "source": "./",
+      "displayName": "BYD Next Workflow",
+      "description": "BYDFi-oriented Claude Code workflow for Next.js, React, TSX, TypeScript, reviews, audits, build fixes, and PR workflows.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Nilu"
+      },
+      "keywords": ["claude-code", "nextjs", "react", "tsx", "bydfi", "workflow"],
+      "category": "development"
+    }
+  ]
+}
