@@ -1,12 +1,12 @@
 ---
 allowed-tools: Skill
-argument-hint: <PR号，必填，例如: 42>
+argument-hint: '<PR号，必填，例如: 42>'
 description: 使用项目专属技能规则自动审查 GitHub Pull Request
 ---
 
 # GitHub PR 审查器
 
-请使用 Skill 工具调用 `.claude/skills/workflow/pr-reviewer/SKILL.md`，并将 `$ARGUMENTS` 原样作为参数传入。
+请使用 Skill 工具调用 `skills/workflow/pr-reviewer/SKILL.md`，并将 `$ARGUMENTS` 原样作为参数传入。
 
 ## 参数
 

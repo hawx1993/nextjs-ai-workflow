@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(gh pr view:*), Bash(gh pr diff:*), Bash(gh pr list:*)
-argument-hint: <PR号，必填，例如: 42>
+argument-hint: '<PR号，必填，例如: 42>'
 description: 按团队规范深度 Review GitHub PR，输出结构化报告
 author: Nilu
 ---

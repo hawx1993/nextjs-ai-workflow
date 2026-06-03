@@ -6,7 +6,7 @@ description: 分析分支变更并创建符合 BYDFi 规范的 Pull Request
 
 # 分析分支变更并创建符合 BYDFi 规范的 Pull Request
 
-请使用 Skill 工具调用 `.claude/skills/workflow/git/create-pr/SKILL.md`，并将 `$ARGUMENTS` 原样作为参数传入。
+请使用 Skill 工具调用 `skills/workflow/git/create-pr/SKILL.md`，并将 `$ARGUMENTS` 原样作为参数传入。
 
 ## 参数
 

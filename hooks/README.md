@@ -23,28 +23,28 @@ TSX 质量扫描可能存在误报，例如：
 ## 本地调试
 
 ```bash
-node --check .claude/hooks/tsx-quality-guard.mjs
-node --check .claude/hooks/dependency-guard.mjs
-node --check .claude/hooks/dangerous-command-guard.mjs
+node --check hooks/tsx-quality-guard.mjs
+node --check hooks/dependency-guard.mjs
+node --check hooks/dangerous-command-guard.mjs
 ```
 
 模拟 Bash 输入：
 
 ```bash
-echo '{"tool_name":"Bash","tool_input":{"command":"pnpm add lodash"}}' | node .claude/hooks/dependency-guard.mjs
+echo '{"tool_name":"Bash","tool_input":{"command":"pnpm add lodash"}}' | node hooks/dependency-guard.mjs
 ```
 
 模拟 Write/Edit 输入：
 
 ```bash
-echo '{"tool_name":"Write","tool_input":{"file_path":"demo.tsx","content":"<div>提交</div>"}}' | node .claude/hooks/tsx-quality-guard.mjs
+echo '{"tool_name":"Write","tool_input":{"file_path":"demo.tsx","content":"<div>提交</div>"}}' | node hooks/tsx-quality-guard.mjs
 ```
 
 ## 误报处理
 
 - 单次误报：在回复中说明原因，不需要改 hook。
 - 高频误报：调整 hook 脚本中的 allowlist。
-- 临时关闭：从 `.claude/settings.json` 中移除对应 hook 条目。
+- 临时关闭：从 用户或项目的 Claude Code settings 中移除对应 plugin hook，或禁用 `byd-next-workflow` plugin。
 
 ## 注意
 

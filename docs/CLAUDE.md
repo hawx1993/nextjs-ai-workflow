@@ -1,17 +1,17 @@
 # CLAUDE.md
 
-本文件是 BYDFi Web 仓库的 Claude Code 总入口。所有 AI 开发、审查、修复、验证都必须先遵守本文件，再按需读取 `.claude/commands/*`、`.claude/skills/*`、`.claude/rules/*`、`.claude/knowledge/*`。
+本文件是 BYDFi Web 仓库的 Claude Code 总入口。所有 AI 开发、审查、修复、验证都必须先遵守本文件，再按需读取 `commands/*`、`skills/*`、`rules/*`、`knowledge/*`。
 
-- `.claude/commands/*`：Slash command 入口与任务路由。
-- `.claude/skills/*`：可复用执行流程。
-- `.claude/rules/*`：不可违反的硬性规则。
-- `.claude/knowledge/*`：项目知识库体系，用于开发前查找和复用已有公共能力，避免重复实现。
+- `commands/*`：Slash command 入口与任务路由。
+- `skills/*`：可复用执行流程。
+- `rules/*`：不可违反的硬性规则。
+- `knowledge/*`：项目知识库体系，用于开发前查找和复用已有公共能力，避免重复实现。
 
 ## 0. AI Workflow 核心约束（每次响应前必读）
 
 1. **范围**：仅处理 `apps/*`、`packages/*` 中的 Next.js / React / TSX 代码
 2. **顺序**：理解 → 读取命令/规则/知识库 → 方案确认 → 实现 → 验证，复杂需求禁止跳步
-3. **先查知识库再实现**：涉及 API、utils、hooks、store、shared、formulas、events、styles、workers、i18n 等能力时，必须先按 `.claude/knowledge/discovery-core.md` 查找可复用能力；涉及新增或修改 hooks 时，必须同时按 `.claude/knowledge/discovery-hooks.md` 查找
+3. **先查知识库再实现**：涉及 API、utils、hooks、store、shared、formulas、events、styles、workers、i18n 等能力时，必须先按 `knowledge/discovery-core.md` 查找可复用能力；涉及新增或修改 hooks 时，必须同时按 `knowledge/discovery-hooks.md` 查找
 4. **禁止自动外发**：未收到用户明确指令，不得执行 git commit / push / pr
 5. **验证必须明示**：改完代码必须列出运行了哪些验证，未运行须说明原因
 6. **不引入新依赖**：任何新 package 需用户确认
@@ -20,28 +20,28 @@
 
 | 场景               | 推荐命令                         | 作用                                           |
 | ------------------ | -------------------------------- | ---------------------------------------------- |
-| 新需求 / 重构规划  | `/byd:dev-plan <需求>`           | 梳理范围、影响面、方案和验证策略，不直接改代码 |
-| 已确认方案后实现   | `/byd:dev-implement <路径/需求>` | 仅实现 Next.js + React + TSX 相关改动          |
-| 本地改动审查       | `/byd:dev-review [文件或范围]`   | 按 React/TSX/i18n/theme/类型/性能维度审查      |
-| 构建或类型报错修复 | `/byd:dev-fix-build <错误输出>`  | 最小改动修复 Next/TS/React 构建问题            |
-| 修复bug            | `/byd:dev-fix-bug <范围>`        | 按指定代码行或目录范围定位并修复 BYDFi Next.js / React / TSX bug |
+| 新需求 / 重构规划  | `/byd-next-workflow:byd:dev-plan <需求>`           | 梳理范围、影响面、方案和验证策略，不直接改代码 |
+| 已确认方案后实现   | `/byd-next-workflow:byd:dev-implement <路径/需求>` | 仅实现 Next.js + React + TSX 相关改动          |
+| 本地改动审查       | `/byd-next-workflow:byd:dev-review [文件或范围]`   | 按 React/TSX/i18n/theme/类型/性能维度审查      |
+| 构建或类型报错修复 | `/byd-next-workflow:byd:dev-fix-build <错误输出>`  | 最小改动修复 Next/TS/React 构建问题            |
+| 修复bug            | `/byd-next-workflow:byd:dev-fix-bug <范围>`        | 按指定代码行或目录范围定位并修复 BYDFi Next.js / React / TSX bug |
 
 专项入口继续使用：
 
-- 代码生成：`/byd:dev-implement`、`/byd:dev-refactor-component`、`/byd:codegen-design-system`、`/byd:codegen-figma-ui`、`/byd:codegen-designer-landing-ui`、`/byd:codegen-designer-premium-ui`
-- 审计：`/byd:audit-i18n`、`/byd:audit-theme`、`/byd:audit-security`、`/byd:audit-dead-code` 等
-- Git/PR：`/byd:workflow-git-commit`、`/byd:workflow-create-pr`（必须用户明确授权）
+- 代码生成：`/byd-next-workflow:byd:dev-implement`、`/byd-next-workflow:byd:dev-refactor-component`、`/byd-next-workflow:byd:codegen-design-system`、`/byd-next-workflow:byd:codegen-figma-ui`、`/byd-next-workflow:byd:codegen-designer-landing-ui`、`/byd-next-workflow:byd:codegen-designer-premium-ui`
+- 审计：`/byd-next-workflow:byd:audit-i18n`、`/byd-next-workflow:byd:audit-theme`、`/byd-next-workflow:byd:audit-security`、`/byd-next-workflow:byd:audit-dead-code` 等
+- Git/PR：`/byd-next-workflow:byd:workflow-git-commit`、`/byd-next-workflow:byd:workflow-create-pr`（必须用户明确授权）
 
-更多说明见 `.claude/AI_WORKFLOW.md` 与 `.claude/commands/byd/dev-doc.md`。
+更多说明见 `AI_WORKFLOW.md` 与 `commands/byd/dev-doc.md`。
 
 ## 2. Claude 工作流资料索引
 
 | 目录 | 定位 | 使用方式 |
 | --- | --- | --- |
-| `.claude/commands/` | Slash command 入口 | 用户触发 `/byd:*` 或专项命令时优先读取 |
-| `.claude/skills/` | 可复用执行流程 | 按任务类型加载规划、实现、审查、验证、审计流程 |
-| `.claude/rules/` | 硬性规则 | 按改动范围读取并遵守，不被 skills / knowledge 覆盖 |
-| `.claude/knowledge/` | 项目知识库体系 | 开发前查找 API、hooks、store、utils、i18n 等公共能力，避免重复实现 |
+| `commands/` | Slash command 入口 | 用户触发 `/byd-next-workflow:byd:*` 或专项命令时优先读取 |
+| `skills/` | 可复用执行流程 | 按任务类型加载规划、实现、审查、验证、审计流程 |
+| `rules/` | 硬性规则 | 按改动范围读取并遵守，不被 skills / knowledge 覆盖 |
+| `knowledge/` | 项目知识库体系 | 开发前查找 API、hooks、store、utils、i18n 等公共能力，避免重复实现 |
 
 ## 3. Knowledge 知识库索引
 
@@ -49,26 +49,26 @@
 
 | Knowledge 文件 | 何时读取 | 输出要求 |
 | --- | --- | --- |
-| `.claude/knowledge/discovery-core.md` | 开发新功能、页面、组件、hook、API 请求、WebSocket、交易/钱包/行情逻辑前 | 输出 core 查找结论：已查模块、可复用能力、处理结论、影响范围、验证 |
-| `.claude/knowledge/discovery-hooks.md` | 新增或修改自定义 hook，或涉及请求、路由、存储、倒计时、响应式、登录态、行情、钱包等交互逻辑 | 输出 hooks 查找结论：已查入口、可复用 hook、处理结论、不复用原因、影响范围 |
-| `.claude/knowledge/discovery-api.md` | 新增或修改接口请求、API 类型、接口路径、接口封装前 | 输出接口查找结论：已有 API、类型、路径、是否需要新增 |
-| `.claude/knowledge/discovery-apps-icon.md` | 涉及图标选型、`@apps/icons` 导入、图标命名或图标复用时 | 输出图标查找结论：候选图标、导入路径、使用方式 |
+| `knowledge/discovery-core.md` | 开发新功能、页面、组件、hook、API 请求、WebSocket、交易/钱包/行情逻辑前 | 输出 core 查找结论：已查模块、可复用能力、处理结论、影响范围、验证 |
+| `knowledge/discovery-hooks.md` | 新增或修改自定义 hook，或涉及请求、路由、存储、倒计时、响应式、登录态、行情、钱包等交互逻辑 | 输出 hooks 查找结论：已查入口、可复用 hook、处理结论、不复用原因、影响范围 |
+| `knowledge/discovery-api.md` | 新增或修改接口请求、API 类型、接口路径、接口封装前 | 输出接口查找结论：已有 API、类型、路径、是否需要新增 |
+| `knowledge/discovery-apps-icon.md` | 涉及图标选型、`@apps/icons` 导入、图标命名或图标复用时 | 输出图标查找结论：候选图标、导入路径、使用方式 |
 
 ## 4. 关键规则索引
 
 | 规则文件                        | 何时读取                                                      | 何时不用读取                                      |
 | ------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| `.claude/rules/nextjs.md`       | 修改 Next.js 页面、路由、SSG/SSR 数据流、服务端/客户端边界    | 纯样式、纯文案、非 Next.js 相关配置改动不需要读   |
-| `.claude/rules/react-tsx.md`    | 修改 React 组件、hooks、props、状态、可访问性                 | 纯脚本、纯配置、非 React/TSX 文件改动不需要读     |
-| `.claude/rules/typescript.md`   | 修改 TS 类型、工具函数、金融计算、import alias                | 纯样式、纯 Markdown 文档、无 TS 类型影响不需要读  |
-| `.claude/rules/prototype.md`    | 使用 Number/String 全局扩展、金融链式计算、数字格式化          | 不涉及数字计算、比较、格式化时不需要读            |
-| `.claude/rules/monorepo.md`     | 修改跨 app/package 共享代码、pnpm workspace、apps-kit/apps-ui | 单 app 内部私有且不影响 workspace 结构不需要读    |
-| `.claude/rules/language.md`     | 任何用户可见文案、i18n、`LANG` 使用                           | 无用户可见文案、无 i18n / `LANG` 改动不需要读     |
-| `.claude/rules/theme.md`        | 任何样式、颜色、主题、RTL、深浅模式                           | 纯逻辑/类型改动不需要读                           |
-| `.claude/rules/responsive.md`   | PC / Tablet / Mobile 响应式、`MediaInfo` 断点使用              | 不涉及布局、断点、设备适配的改动不需要读          |
-| `.claude/rules/styled-jsx.md`   | 修改 styled-jsx、`:global()`、样式嵌套、响应式、RTL 样式       | 不涉及 styled-jsx / CSS-in-JS 样式改动不需要读    |
-| `.claude/rules/verification.md` | 任何代码改动后的验证与结果汇报                                | 仅咨询、只读分析且没有修改文件时不需要读          |
-| `.claude/rules/branch.md`       | 分支命名、合流、PR 目标分支                                   | 不涉及建分支、合流、PR / commit 流程不需要读      |
+| `rules/nextjs.md`       | 修改 Next.js 页面、路由、SSG/SSR 数据流、服务端/客户端边界    | 纯样式、纯文案、非 Next.js 相关配置改动不需要读   |
+| `rules/react-tsx.md`    | 修改 React 组件、hooks、props、状态、可访问性                 | 纯脚本、纯配置、非 React/TSX 文件改动不需要读     |
+| `rules/typescript.md`   | 修改 TS 类型、工具函数、金融计算、import alias                | 纯样式、纯 Markdown 文档、无 TS 类型影响不需要读  |
+| `rules/prototype.md`    | 使用 Number/String 全局扩展、金融链式计算、数字格式化          | 不涉及数字计算、比较、格式化时不需要读            |
+| `rules/monorepo.md`     | 修改跨 app/package 共享代码、pnpm workspace、apps-kit/apps-ui | 单 app 内部私有且不影响 workspace 结构不需要读    |
+| `rules/language.md`     | 任何用户可见文案、i18n、`LANG` 使用                           | 无用户可见文案、无 i18n / `LANG` 改动不需要读     |
+| `rules/theme.md`        | 任何样式、颜色、主题、RTL、深浅模式                           | 纯逻辑/类型改动不需要读                           |
+| `rules/responsive.md`   | PC / Tablet / Mobile 响应式、`MediaInfo` 断点使用              | 不涉及布局、断点、设备适配的改动不需要读          |
+| `rules/styled-jsx.md`   | 修改 styled-jsx、`:global()`、样式嵌套、响应式、RTL 样式       | 不涉及 styled-jsx / CSS-in-JS 样式改动不需要读    |
+| `rules/verification.md` | 任何代码改动后的验证与结果汇报                                | 仅咨询、只读分析且没有修改文件时不需要读          |
+| `rules/branch.md`       | 分支命名、合流、PR 目标分支                                   | 不涉及建分支、合流、PR / commit 流程不需要读      |
 
 ## 5. 项目硬性约束
 
@@ -153,7 +153,7 @@ your-page/
 
 - `index.page.tsx`：页面主入口，遵守对应 app 的 `pageExtensions`。
 - `components/`：当前页面抽取出去的页面专属组件；可跨页面复用的组件应放到 app 级 `src/components` 或合适共享包，并说明影响范围。
-- `hooks/`：当前页面私有交互逻辑；新增前必须先查 `.claude/knowledge/discovery-hooks.md` 与 `packages/apps-kit/core/hooks`。
+- `hooks/`：当前页面私有交互逻辑；新增前必须先查 `knowledge/discovery-hooks.md` 与 `packages/apps-kit/core/hooks`。
 - `store/`：当前页面跨组件状态传递；组件内部简单状态不应过早抽 store。
 - `types.ts`：页面私有类型；API 请求和响应类型优先复用 `packages/apps-kit/core/network/src/api` 中已有类型。
 - `constants.ts`：页面私有常量；跨页面通用常量应评估放到 app 级或 shared/core。
@@ -175,8 +175,8 @@ your-page/
 
 ### 样式系统
 
-- Styled JSX + SCSS；styled-jsx 具体写法遵守 `.claude/rules/styled-jsx.md`。
-- 响应式遵守 `.claude/rules/responsive.md`，优先使用 `MediaInfo` 覆盖 PC / Tablet / Mobile。
+- Styled JSX + SCSS；styled-jsx 具体写法遵守 `rules/styled-jsx.md`。
+- 响应式遵守 `rules/responsive.md`，优先使用 `MediaInfo` 覆盖 PC / Tablet / Mobile。
 - 颜色使用 CSS 变量：`--spec-*` / `--skin-*` / 已确认的 `--nex-*`。
 - UI 改动必须考虑品牌色、深浅模式、RTL、三端响应式。
 
@@ -199,7 +199,7 @@ your-page/
 - Commit 格式：`type(scope): subject` + body（修改原因/处理方案/影响范围），中文撰写。
 - commitlint + husky 强制校验。
 - 分支策略：feature → release/\* → main。
-- `main` 只接受 `release/*` 合并；项目分支规则详见 `.claude/rules/branch.md`。
+- `main` 只接受 `release/*` 合并；项目分支规则详见 `rules/branch.md`。
 
 ## 12. 已知技术债
 

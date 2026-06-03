@@ -7,11 +7,11 @@ author: Nilu
 
 # BYDFi Next.js 需求规划
 
-请按 `.claude/skills/dev/nextjs-dev/SKILL.md` 的“规划”流程执行，并将 `$ARGUMENTS` 作为原始需求输入。
+请按 `skills/dev/nextjs-dev/SKILL.md` 的“规划”流程执行，并将 `$ARGUMENTS` 作为原始需求输入。
 
 # 查找可复用的能力
 
-请按 `.claude/knowledge/discovery-core.md` 的“查找可复用的能力”流程执行。
+请按 `knowledge/discovery-core.md` 的“查找可复用的能力”流程执行。
 
 包括:
 

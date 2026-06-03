@@ -7,7 +7,7 @@ author: Nilu
 
 # BYDFi Next.js 构建修复
 
-请按 `.claude/skills/dev/nextjs-dev/SKILL.md` 的“构建修复”流程执行，并将 `$ARGUMENTS` 作为错误输入。
+请按 `skills/dev/nextjs-dev/SKILL.md` 的“构建修复”流程执行，并将 `$ARGUMENTS` 作为错误输入。
 
 ## 执行要求
 
