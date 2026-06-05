@@ -77,7 +77,18 @@ author: Nilu
   - 响应式优先使用 `MediaInfo` 断点。
   - UI 修复后必须说明深/浅、黄/蓝、RTL、PC/Tablet/Mobile 的影响和验证情况。
 
-### 2. `packages/apps-kit/core` 公共能力问题
+### 2. 组件库使用问题
+
+如果 bug 涉及表单、弹窗、按钮、链接、图片、Tooltip、Table、Select、DatePicker、Drawer、Empty、响应式组件等项目封装组件使用：
+
+- 必须读取：`.claude/knowledge/discovery-components.md`
+- 修复要求：
+  - 先查 `packages/apps-kit/components` 现有组件入口、调用方和导入方式。
+  - 优先复用项目封装组件，避免原生 `<img>`、`<select>`、项目路由 `<a>` 或直接使用 antd Modal/Input/Tooltip/Table/Drawer。
+  - 若项目明确要求 `packages/apps-ui` 组件（如 `@apps/ui/select`），按现有调用方选择 apps-ui，不误用 apps-kit 同名组件。
+  - 修复后说明 components 查找结论和影响范围。
+
+### 3. `packages/apps-kit/core` 公共能力问题
 
 如果 bug 范围或根因涉及 `packages/apps-kit/core`、`@/core/*`、`@apps/kit/core/*`、hooks、network、i18n、store、shared、utils、formulas、events、styles、workers：
 
@@ -91,7 +102,7 @@ author: Nilu
   - hooks、请求状态、路由、存储、倒计时、响应式、主题、登录态、行情、钱包、WebSocket 等优先复用 `core/hooks`，不新增平行逻辑。
   - 本地存储、路由、格式化、时间、金融计算等优先复用 core 现有能力。
 
-### 3. 代码规范 / Review 违规问题
+### 4. 代码规范 / Review 违规问题
 
 如果 bug 与代码规范、组件库使用、hooks 依赖、i18n、theme、SSR/SSG 边界、可访问性、性能、未使用代码、any 类型、原生 API 使用有关：
 

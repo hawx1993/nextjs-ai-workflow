@@ -25,6 +25,7 @@ author: Nilu
 - styles
 - workers
 - i18n
+- components（涉及 UI 组件、表单、弹窗、表格、图片、选择器等时必须按 `knowledge/discovery-components.md` 执行，优先复用 `packages/apps-kit/components`）
 
 找到后，列出可被复用的方法，接口等，如果没有的话，说明没有可复用的能力，需要新增。
 

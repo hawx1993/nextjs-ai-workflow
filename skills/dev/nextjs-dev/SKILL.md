@@ -32,6 +32,7 @@ author: nilu
 - 是否涉及共享包：`apps-kit` / `apps-ui` / `apps-icons` / `apps-base-kline`。
 - 是否涉及 UI、i18n、theme、金融计算。
 - 是否涉及 React hook、新增 hook、请求/路由/存储/倒计时/响应式/登录态/行情/钱包逻辑；如涉及，必须读取 `.claude/knowledge/discovery-hooks.md` 并优先复用 `packages/apps-kit/core/hooks`。
+- 是否涉及 UI 组件、表单、弹窗、表格、图片、选择器、Tooltip、Drawer、Empty 或响应式组件；如涉及，必须读取 `.claude/knowledge/discovery-components.md` 并优先复用 `packages/apps-kit/components`。
 
 需求不清晰时，先询问用户。
 
@@ -70,7 +71,7 @@ author: nilu
 
 实现时必须：
 
-- 复用现有组件、工具、API 与 `core/hooks`；新增 app-local hook 前必须先查 `.claude/knowledge/discovery-hooks.md`。
+- 复用现有组件、工具、API 与 `core/hooks`；涉及 UI 组件时必须先查 `.claude/knowledge/discovery-components.md`，新增 app-local hook 前必须先查 `.claude/knowledge/discovery-hooks.md`。
 - 文案走 `LANG`。
 - 颜色走 CSS 变量。
 - 涉及 CSS / styled-jsx / 样式生成或调整时，必须遵守 `.claude/skills/codegen/design-system/SKILL.md` 的 Nex 设计系统样式规则。

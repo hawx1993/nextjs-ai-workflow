@@ -15,7 +15,7 @@ author: nilu
 - hooks 必须在组件或自定义 hook 顶层调用。
 - 新 hooks 主动补全依赖，即使项目全局关闭 `react-hooks/exhaustive-deps`。
 - 列表渲染使用稳定 key，不使用随机数、数组 index 或会频繁变化的值。
-- 表单、弹窗、按钮、链接优先复用项目封装组件。
+- 表单、弹窗、按钮、链接优先复用项目封装组件；不确定组件路径时先读 `.claude/knowledge/discovery-components.md`。
 - 用户可见文案遵守 `language.md`。
 - 样式颜色遵守 `theme.md`。
 - styled-jsx 写法遵守 `styled-jsx.md`。
@@ -175,7 +175,7 @@ export interface GetXxxApiResponse {
 
 - [ ] hooks 依赖是否完整？
 - [ ] props 类型是否清晰？
-- [ ] 是否复用已有组件？
+- [ ] 是否复用已有组件，并已按需查阅 `.claude/knowledge/discovery-components.md`？
 - [ ] 图片、图标、Tooltip、Modal、Input、Link、Empty、ErrorBoundary 是否遵守项目封装规则？
 - [ ] 文案是否走 `LANG`？
 - [ ] 颜色是否走 CSS 变量？

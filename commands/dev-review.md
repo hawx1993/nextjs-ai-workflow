@@ -17,6 +17,7 @@ author: Nilu
 ## 审查重点
 
 - React hooks 与渲染正确性；新增或修改 hook 是否已查 `packages/apps-kit/core/hooks`，是否误把 app-local `@/hooks` 当共享 hooks，是否重复实现 core hook 已覆盖能力。
+- UI 组件库封装使用；涉及表单、弹窗、表格、图片、选择器、Tooltip、Drawer、Empty 或响应式组件时，是否已查 `knowledge/discovery-components.md` 并优先复用 `packages/apps-kit/components`。
 - TypeScript 类型安全。
 - `LANG` 与硬编码文案。
 - CSS 变量与硬编码颜色。
