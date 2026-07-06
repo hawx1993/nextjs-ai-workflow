@@ -33,6 +33,7 @@ author: nilu
 - `.claude/rules/prototype.md`（涉及金融计算时 必须遵守）
 - `.claude/rules/responsive.md`（涉及响应式时 必须遵守, 修复响应式问题可查阅）
 - `.claude/knowledge/discovery-hooks.md`（涉及新增/修改 hook，或请求、路由、存储、倒计时、响应式、登录态、行情、钱包等可复用 hooks 时必须读取）
+- `.claude/knowledge/discovery-components.md`（涉及 UI 组件、表单、弹窗、表格、图片、选择器、Tooltip、Drawer、Empty 或组件库使用规范时必须读取）
 
 条件触发 Skills：
 - `.claude/skills/codegen/design-system/SKILL.md`（设计系统规范遵守，涉及 CSS / styled-jsx / 样式生成或调整时必须读取并遵守）
@@ -48,7 +49,7 @@ author: nilu
 - Next.js SSR/SSG/client-only 边界。
 - core 能力复用与重复实现，尤其是新增 `use-*`、手写请求 loading、router/storage/timer/debounce/responsive/theme/auth/market/ws 逻辑时，是否已查 `.claude/knowledge/discovery-hooks.md` 并优先复用 `core/hooks`。
 - 金融计算安全性：避免原生浮点，识别项目 prototype 链式方法和 `BN` / `bignumber.js` 为合规实现。
-- 组件库封装使用。
+- 组件库封装使用；涉及表单、弹窗、表格、图片、选择器等 UI 组件时，是否已查 `.claude/knowledge/discovery-components.md` 并优先复用 `packages/apps-kit/components`。
 - 可访问性。
 - 性能与复杂度。
 - 验证覆盖。
