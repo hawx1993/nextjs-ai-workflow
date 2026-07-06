@@ -25,14 +25,16 @@
 安装插件：
 
 ```text
-/plugin install byd-next@byd-next-marketplace
+/plugin install byd-next
 ```
 
-如果已经添加过旧版本 marketplace，先更新：
+如果已经添加过 marketplace，先更新：
 
 ```text
-/plugin marketplace update byd-next-marketplace
+/plugin marketplace update byd-next-workflow-marketplace
 ```
+
+
 
 ## 本地测试
 
