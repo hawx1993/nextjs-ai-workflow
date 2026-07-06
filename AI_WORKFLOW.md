@@ -14,8 +14,7 @@ skills/workflow/nextjs-*    # 可复用流程，统一输出格式
 agents/*.md                 # 专职角色：架构、实现、审查、构建修复、验证
   ↓
 rules/*.md                  # 技术规则：Next、React、TS、monorepo、i18n、theme、verification
-  ↓
-hooks/*.mjs                 # 自动护栏：危险命令阻断，TSX 质量提醒
+
 ```
 
 ## 2. 日常开发主流程

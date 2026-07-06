@@ -27,15 +27,6 @@ pnpm eslint:check
 pnpm prettier:check
 ```
 
-### `.claude` 配置
-
-```bash
-node -e "JSON.parse(require('fs').readFileSync('.claude/settings.json','utf8'))"
-node --check .claude/hooks/tsx-quality-guard.mjs
-node --check .claude/hooks/dependency-guard.mjs
-node --check .claude/hooks/dangerous-command-guard.mjs
-```
-
 ## UI 改动检查矩阵
 
 - 品牌色：黄色 / 蓝色。

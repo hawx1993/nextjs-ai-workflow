@@ -2,7 +2,7 @@
 
 `byd-next` 是一个 Claude Code plugin，用于在 BYDFi 风格的 Next.js / React / TSX / TypeScript monorepo 中提供可复用的 AI 开发工作流。
 
-它将本仓库的 commands、agents、skills、rules、knowledge 和 hooks 打包为 Claude Code plugin，安装后通过 plugin namespace 调用。
+它将本仓库的 commands、agents、skills、rules、knowledge  打包为 Claude Code plugin，安装后通过 plugin namespace 调用。
 
 ## 包含内容
 
@@ -11,7 +11,6 @@
 - `skills/`：规划、实现、审查、审计、发版前检查、PR Review 等可复用流程。
 - `rules/`：Next.js、React TSX、TypeScript、i18n、theme、responsive、verification 等硬规则。
 - `knowledge/`：core/API/hooks/icons 等公共能力发现流程。
-- `hooks/`：危险命令阻断、新增依赖阻断、TSX 质量提醒。
 
 ## 安装
 

@@ -60,17 +60,8 @@ rules:
   - theme
   - verification
   - branch
-hooks:
-  recommended:
-    - dangerous-command-guard
-    - dependency-guard
-    - tsx-quality-guard
-  status: 'hook 脚本已提供；settings.json 接入需用户允许修改 Claude Code 行为配置后启用。'
+
 validation:
-  config:
-    - node --check .claude/hooks/tsx-quality-guard.mjs
-    - node --check .claude/hooks/dependency-guard.mjs
-    - node --check .claude/hooks/dangerous-command-guard.mjs
   project:
     - pnpm tsc:all
     - pnpm lint:all
